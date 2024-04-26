@@ -57,8 +57,8 @@ public class Main {
     }
 
     private static LocalDate obtenerFechaAnteriorANoventaDias() {
-        int diaMenoraNoventaDias = new Random().nextInt(90);
-        return LocalDate.now().minusDays(diaMenoraNoventaDias);
+        int diaMenorANoventaDias = new Random().nextInt(90);
+        return LocalDate.now().minusDays(diaMenorANoventaDias);
     }
 
     private static LocalDate obtenerFechaPosteriorANoventaDias() {
