@@ -27,22 +27,28 @@ public class Main {
         agregarLlamada(callCenter, "Juan", "Problema con el teclado otra vez 2");
         agregarLlamada(callCenter, "Juan", "Juan, cambia el teclado");
 
+        System.out.println("=============================================");
         System.out.println("llamadas de todos los clientes");
+
         callCenter.llamadasHechasPorClientes().forEach(
             (cliente, llamadas) -> System.out.println(cliente + " : " + llamadas)
         );
 
         try {
-            callCenter.crearArchivoDeTextoConClientesEnRiesgoDeFuga("clintesEnRiesgoDeFuga.txt");
+            callCenter.crearArchivoDeTextoConClientesEnRiesgoDeFuga("clientesEnRiesgoDeFuga.txt");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("=============================================");
+        System.out.printf("Promedio de gravedad de llamadas usando streams: %.2f\n", callCenter.promedioDeGravedadDeLlamadasUsandoStreams());
         System.out.println("llamadas de Juan");
         callCenter.llamadasDeCliente("Juan").forEach(System.out::println);
 
-        callCenter.eliminarClienteDelSistema("Juan");
 
+        callCenter.eliminarClienteDelSistema("Juan");
+        System.out.println("=============================================");
+        //Imprimir solo dos decimales
+        System.out.printf("Promedio de gravedad de llamadas usando streams: %.2f\n", callCenter.promedioDeGravedadDeLlamadasUsandoStreams());
         System.out.println("Llamadas de todos los clientes despues de eliminar a Juan");
         callCenter.llamadasHechasPorClientes().forEach(
             (cliente, llamadas) -> System.out.println(cliente + " : " + llamadas)
@@ -63,7 +69,7 @@ public class Main {
     private static void agregarLlamada(CallCenter callCenter, String nombre, String resumen) {
         try {
 
-            int gravedad = new Random().nextInt(5,10);
+            int gravedad = new Random().nextInt(6,10);
 
             boolean esFechaPosteriorANoventaDias = gravedad > 7;
 
